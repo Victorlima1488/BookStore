@@ -1,6 +1,6 @@
 package Books;
 
-public class Book {
+public class Book implements Comparable<Book>{
     private String title;
     private String author;
     private Boolean published;
@@ -65,5 +65,10 @@ public class Book {
                 ", price=" + price +
                 ", Id=" + Id +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Book bookTitle) {
+        return this.getTitle().compareToIgnoreCase(bookTitle.getTitle());
     }
 }
