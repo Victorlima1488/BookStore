@@ -6,14 +6,15 @@ public class Book implements Comparable<Book>{
     private Boolean published;
     private Double price;
     private Integer Id;
-//    public List<String> amountsOfBooks = new ArrayList<String>();
+    private String gender;
 
-    public Book(String title, String author, Boolean published, Double price, Integer id) {
+    public Book(String title, String author, Boolean published, Double price, String gender,Integer id) {
         this.title = title;
         this.author = author;
         this.published = published;
         this.price = price;
-        Id = id;
+        this.gender = gender;
+        this.Id = id;
     }
 
     public String getTitle() {
@@ -46,6 +47,14 @@ public class Book implements Comparable<Book>{
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Integer getId() {

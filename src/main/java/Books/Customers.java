@@ -7,6 +7,7 @@ public class Customers {
     private String senha;
     private String cpf;
     private Integer idade;
+    private Boolean login;
 
     public Customers(String name, String sexo, String email, String senha, String cpf, Integer idade) {
         this.name = name;
@@ -15,6 +16,7 @@ public class Customers {
         this.senha = senha;
         this.cpf = cpf;
         this.idade = idade;
+        this.login = false;
     }
 
     public String getName() {
@@ -63,6 +65,14 @@ public class Customers {
 
     public void setIdade(Integer idade) {
         this.idade = idade;
+    }
+
+    public Boolean getLogin() {
+        return login;
+    }
+
+    public void setLogin(Boolean login) {
+        this.login = login;
     }
 
     @Override
