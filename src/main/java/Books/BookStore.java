@@ -1,5 +1,7 @@
 package Books;
 import java.util.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class BookStore {
     Book book;
@@ -7,6 +9,7 @@ public class BookStore {
     Double balance = 0.0;
     List<Book> books = new ArrayList<>();
     Set<Customers> customers = new HashSet<>();
+    Map<String, String> myRequests = new HashMap<>();
     Scanner scanner = new Scanner(System.in);
 
     public Double getGalance(){
@@ -74,6 +77,7 @@ public class BookStore {
                             if(customer.getLogin()){
                                 System.out.println("Compra confirmada!");
                                 setBalance(price);
+                                addMyRequest(book.getTitle());
 //                                remove(index);
                             }else{
                                 System.out.println("Faça login e tente novamente.");
@@ -83,6 +87,22 @@ public class BookStore {
                 }
             }
         }
+    }
+
+    public void myRequest(String date){
+        for(Map.Entry<String, String> entry: myRequests.entrySet()){
+            if(entry.getValue().equals(date)){
+                System.out.println(entry.getKey());
+            }
+        }
+    }
+
+    public void addMyRequest(String book){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = currentDate.format(formatter);
+        myRequests.put(book, formattedDate);
+        System.out.println(myRequests);
     }
 
     public Boolean isEmpty(){
