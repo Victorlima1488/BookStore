@@ -1,5 +1,6 @@
 package Books;
 import java.util.*;
+import java.util.stream.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -12,7 +13,8 @@ public class BookStore {
     Map<String, String> myRequests = new HashMap<>();
     Scanner scanner = new Scanner(System.in);
 
-    public Double getGalance(){
+
+    public Double getBalance(){
         return this.balance;
     }
 
@@ -22,6 +24,11 @@ public class BookStore {
 
     public void addCustomers(Customers newCustomers){
         customers.add(newCustomers);
+    }
+
+    public void allTitles(){
+        Stream<String> stream = books.stream().map(b -> b.getTitle());
+        stream.forEach(System.out::println);
     }
 
     public void getCustomers(){
@@ -103,6 +110,17 @@ public class BookStore {
         String formattedDate = currentDate.format(formatter);
         myRequests.put(book, formattedDate);
         System.out.println(myRequests);
+    }
+
+    public void getPoints(String cpf){
+        customers.forEach(c -> {
+            if(c.getCpf().equals(cpf)) System.out.println(c.getPoints());
+        });
+    }
+
+    public void getBooksFilteredByPrice(Double num){
+        Stream<Book> stream = books.stream().filter(c -> c.getPrice() > num);
+        stream.forEach(System.out::println);
     }
 
     public Boolean isEmpty(){

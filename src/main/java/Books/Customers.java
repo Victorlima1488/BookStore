@@ -9,7 +9,9 @@ public class Customers {
     private Integer idade;
     private Boolean login;
 
-    public Customers(String name, String sexo, String email, String senha, String cpf, Integer idade) {
+    private Integer points = 0;
+
+    public Customers(String name, String sexo, String email, String senha, String cpf, Integer idade, Integer points) {
         this.name = name;
         this.sexo = sexo;
         this.email = email;
@@ -17,6 +19,7 @@ public class Customers {
         this.cpf = cpf;
         this.idade = idade;
         this.login = false;
+        this.points = points;
     }
 
     public String getName() {
@@ -73,6 +76,14 @@ public class Customers {
 
     public void setLogin(Boolean login) {
         this.login = login;
+    }
+
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
     }
 
     @Override
