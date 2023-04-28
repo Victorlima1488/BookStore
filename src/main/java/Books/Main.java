@@ -25,22 +25,17 @@ public class Main {
        bookStore.addCustomers(Neto);
        bookStore.addCustomers(Gaby);
 
-//       bookStore.login("netomaciel48@gmail.com", "Suelyy123");
        bookStore.login("limaeriko48@gmail.com", "Cagepa1037");
 
-//       bookStore.buyBook("Oração");
-//
-//       bookStore.myRequest("26/04/2023");
+       bookStore.buyBook("Oração");
 
-       bookStore.getBooks();
-
-//       System.out.println(bookStore.getBalance());
+//       bookStore.getBooks();
 
        bookStore.getPoints("10481742476");
 
-       bookStore.getBooksFilteredByPrice(20d);
+//       bookStore.getBooksFilteredByPrice(20d);
 
-       bookStore.allTitles();
+//       bookStore.allTitles();
     }
 
 }

@@ -3,6 +3,7 @@ import java.util.*;
 import java.util.stream.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.*;
 
 public class BookStore {
     Book book;
@@ -11,8 +12,6 @@ public class BookStore {
     List<Book> books = new ArrayList<>();
     Set<Customers> customers = new HashSet<>();
     Map<String, String> myRequests = new HashMap<>();
-    Scanner scanner = new Scanner(System.in);
-
 
     public Double getBalance(){
         return this.balance;
@@ -75,14 +74,13 @@ public class BookStore {
                 System.out.println("O livro " + title + " está custando R$:" + book.getPrice() + ". \nDeseja confirmar a compra? (Y/N)");
                 Integer index = books.indexOf(book.getId());
                 Double price = book.getPrice();
-                String yOrN = scanner.next();
+                String yOrN = JOptionPane.showInputDialog("Deseja comprar um livro?");
                 if(yOrN.equals("Y")){
-                    System.out.println("Informe seu cpf");
-                    String cpf = scanner.next();
+                    String cpf = JOptionPane.showInputDialog("Digite seu cpf");
                     for(Customers customer: customers){
                         if(customer.getCpf().equals(cpf)){
                             if(customer.getLogin()){
-                                System.out.println("Compra confirmada!");
+                                JOptionPane.showMessageDialog(null, "Compra confirmada!");
                                 setBalance(price);
                                 addMyRequest(book.getTitle());
 //                                remove(index);
