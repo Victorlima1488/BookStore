@@ -128,12 +128,11 @@ public class BookStore {
     public void buyBook(String title){
         for(Book book: books){
             if(book.getTitle().equals(title)){
-                System.out.println("O livro " + title + " está custando R$:" + book.getPrice() + ". \nDeseja confirmar a compra? (Y/N)");
                 Integer index = books.indexOf(book.getId());
                 Double price = book.getPrice();
-                String yOrN = JOptionPane.showInputDialog("Deseja comprar um livro?");
+                String yOrN = JOptionPane.showInputDialog("O livro " + title + " está custando R$:" + price + ". Deseja continuar a compra?");
                 if(yOrN.equals("Y")){
-                    String cpf = JOptionPane.showInputDialog("Digite seu cpf");
+                    String cpf = JOptionPane.showInputDialog("Digite seu cpf: ");
                     for(Customers customer: customers){
                         if(customer.getCpf().equals(cpf)){
                             if(customer.getLogin()){
@@ -142,7 +141,7 @@ public class BookStore {
                                 addMyRequest(book.getTitle());
 //                                remove(index);
                             }else{
-                                System.out.println("Faça login e tente novamente.");
+                                JOptionPane.showMessageDialog(null, "Faça o login e tente novamente.");
                             }
                         }
                     }

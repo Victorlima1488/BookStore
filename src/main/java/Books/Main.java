@@ -10,7 +10,7 @@ public class Main {
        BookStore bookStore = new BookStore();
        Scanner input = new Scanner(System.in);
 
-       String option;
+       String option = null;
 
        Book book = new Book("Oração", "Timothy Keller", true, 50.60, "Teologia", 0);
        Book book2 = new Book("Orando com os Salmos", "Dietrich Bonhoffer", true, 30.90, "Teologia", 1);
@@ -23,6 +23,24 @@ public class Main {
        bookStore.add(book3);
        bookStore.add(book4);
        bookStore.add(book5);
+
+       Customers victor = new Customers("Victor Ériko de Lima Maciel", "M", "limaeriko48@gmail.com", "Cagepa1037", "10481742476", 23, 0);
+
+       bookStore.addCustomers(victor);
+       bookStore.login("limaeriko48@gmail.com", "Cagepa1037");
+       
+       do{
+          option = JOptionPane.showInputDialog("Seja bem vindo(a) à BookStore!\n" +
+                  "Escolha uma das opções abaixo no nosso menu:\n\n" +
+                  "1 - Fazer login como parceiro.\n" +
+                  "2 - Fazer login como cliente.\n" +
+                  "3 - Se cadastar.\n" +
+                  "4 - Sair");
+       }while (!option.equals("4"));
+
+
+
+
 
        do {
           option = JOptionPane.showInputDialog("Escolha uma das opções abaixo: " +
@@ -39,13 +57,13 @@ public class Main {
                            "4 - Aventura e ficção\n");
                    bookStore.getBookByCategory(option2);
                 } else {
-                   System.out.println("else");
                    bookStore.getBooks();
                 }
                 break;
 
              case "2":
-
+                String option2 = JOptionPane.showInputDialog("Qual livro deseja comprar?");
+                bookStore.buyBook(option2);
                break;
 
              case "3":
