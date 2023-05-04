@@ -1,5 +1,7 @@
 package Books;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.stream.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -12,6 +14,60 @@ public class BookStore {
     List<Book> books = new ArrayList<>();
     Set<Customers> customers = new HashSet<>();
     Map<String, String> myRequests = new HashMap<>();
+
+    private void stream(String titulo){
+        JFrame jFrame = new JFrame(titulo);
+        jFrame.setVisible(true);
+        jFrame.setSize(250, 250);
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        books.forEach((book) -> {
+            JLabel label = new JLabel(book.getTitle());
+            panel.add(label);
+        });
+
+        jFrame.getContentPane().add(panel);
+    }
+
+    private void stream(String titulo, String category){
+        JFrame jFrame = new JFrame(titulo);
+        jFrame.setVisible(true);
+        jFrame.setSize(250, 250);
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        switch (category) {
+            case "1":
+                category = "Teologia";
+                break;
+            case "2":
+                category = "Ação e aventura";
+                break;
+            case "3":
+                category = "Literatura";
+                break;
+            case "4":
+                category = "Aventura e ficção";
+                break;
+        }
+
+        String finalCategory = category;
+        books.forEach((book) -> {
+            if(book.getGender().equals(finalCategory)){
+                JLabel label = new JLabel(book.getTitle());
+                panel.add(label);
+            }
+        });
+
+        jFrame.getContentPane().add(panel);
+    }
 
     public Double getBalance(){
         return this.balance;
@@ -46,26 +102,27 @@ public class BookStore {
         return false;
     }
 
-    public void getbookByCategory(String option){
-        if(option.equals("a")){
-            for(Book book: books){
-                if(book.getGender().equals("Teologia")){
-                    System.out.println(book);
-                }
-            }
-        }else if(option.equals("b")){
-            for(Book book: books){
-                if(book.getGender().equals("Ação e aventura")){
-                    System.out.println(book);
-                }
-            }
-        }else{
-            for(Book book: books){
-                if(book.getGender().equals("Ação e aventura")){
-                    System.out.println(book);
-                }
-            }
+    public void getBookByCategory(String option){
+        switch (option) {
+            case "1":
+               stream("Livros", "1");
+                break;
+            case "2":
+                stream("Livros", "2");
+                break;
+            case "3":
+                stream("Livros", "3");
+                break;
+            case "4":
+                stream("Livros", "4");
+                break;
         }
+    }
+
+    public void getBooks(){
+        sortAlphabetically();
+        books.forEach((book) -> System.out.println(book.getTitle()));
+        stream("Livros");
     }
 
     public void buyBook(String title){
@@ -151,15 +208,11 @@ public class BookStore {
         }
     }
 
-    public void getBooks(){
-        for(Book book: books) System.out.println(book);
-    }
-
     public void size(){
         System.out.println(books.size());
     }
 
-    public void sortAlphabetically(){
+    private void sortAlphabetically(){
         Collections.sort(books);
     }
 
