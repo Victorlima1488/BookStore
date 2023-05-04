@@ -8,7 +8,6 @@ public class Customers {
     private String cpf;
     private Integer idade;
     private Boolean login;
-
     private Integer points = 0;
 
     public Customers(String name, String sexo, String email, String senha, String cpf, Integer idade, Integer points) {
