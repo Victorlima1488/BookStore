@@ -4,21 +4,21 @@ public class Customers {
     private String name;
     private String sexo;
     private String email;
-    private String senha;
+    private String password;
     private String cpf;
-    private Integer idade;
+    private Integer age;
     private Boolean login;
-    private Integer points = 0;
+    private Integer points;
 
-    public Customers(String name, String sexo, String email, String senha, String cpf, Integer idade, Integer points) {
+    public Customers(String name, String sexo, String email, String password, String cpf, Integer age) {
         this.name = name;
         this.sexo = sexo;
         this.email = email;
-        this.senha = senha;
+        this.password = password;
         this.cpf = cpf;
-        this.idade = idade;
+        this.age = age;
         this.login = false;
-        this.points = points;
+        this.points = 0;
     }
 
     public String getName() {
@@ -45,12 +45,12 @@ public class Customers {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCpf() {
@@ -61,12 +61,12 @@ public class Customers {
         this.cpf = cpf;
     }
 
-    public Integer getIdade() {
-        return idade;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setIdade(Integer idade) {
-        this.idade = idade;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public Boolean getLogin() {
@@ -91,9 +91,9 @@ public class Customers {
                 "name='" + name + '\'' +
                 ", sexo='" + sexo + '\'' +
                 ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
+                ", senha='" + password + '\'' +
                 ", cpf='" + cpf + '\'' +
-                ", idade=" + idade +
+                ", idade=" + age +
                 '}';
     }
 }

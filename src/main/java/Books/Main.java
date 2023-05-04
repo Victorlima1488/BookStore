@@ -8,7 +8,6 @@ public class Main {
     public static void main(String[] args) {
 
        BookStore bookStore = new BookStore();
-       Scanner input = new Scanner(System.in);
 
        String option = null;
 
@@ -24,11 +23,6 @@ public class Main {
        bookStore.add(book4);
        bookStore.add(book5);
 
-       Customers victor = new Customers("Victor Ériko de Lima Maciel", "M", "limaeriko48@gmail.com", "Cagepa1037", "10481742476", 23, 0);
-
-       bookStore.addCustomers(victor);
-       bookStore.login("limaeriko48@gmail.com", "Cagepa1037");
-       
        do{
           option = JOptionPane.showInputDialog("Seja bem vindo(a) à BookStore!\n" +
                   "Escolha uma das opções abaixo no nosso menu:\n\n" +
@@ -36,6 +30,27 @@ public class Main {
                   "2 - Fazer login como cliente.\n" +
                   "3 - Se cadastar.\n" +
                   "4 - Sair");
+
+          switch (option){
+             case "1":
+
+                break;
+
+             case "2":
+
+                break;
+
+             case "3":
+                String option3 = JOptionPane.showInputDialog("Deseja se cadastrar como:\n\n" +
+                        "1 - Funcionáio.\n" +
+                        "2 - Usuário.");
+                if(option3.equals("1")){
+                   bookStore.registrationWindow(1);
+                }else{
+                   bookStore.registrationWindow(2);
+                }
+                break;
+          }
        }while (!option.equals("4"));
 
 

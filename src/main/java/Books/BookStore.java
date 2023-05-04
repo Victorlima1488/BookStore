@@ -10,13 +10,15 @@ import javax.swing.*;
 public class BookStore {
     Book book;
     Customers customer;
+    Employee employee;
     Double balance = 0.0;
     List<Book> books = new ArrayList<>();
     Set<Customers> customers = new HashSet<>();
+    Set<Employee> employees = new HashSet<>();
     Map<String, String> myRequests = new HashMap<>();
 
-    private void stream(String titulo){
-        JFrame jFrame = new JFrame(titulo);
+    private void windows(String title){
+        JFrame jFrame = new JFrame(title);
         jFrame.setVisible(true);
         jFrame.setSize(250, 250);
         jFrame.setLocationRelativeTo(null);
@@ -33,7 +35,7 @@ public class BookStore {
         jFrame.getContentPane().add(panel);
     }
 
-    private void stream(String titulo, String category){
+    private void windows(String titulo, String category){
         JFrame jFrame = new JFrame(titulo);
         jFrame.setVisible(true);
         jFrame.setSize(250, 250);
@@ -69,6 +71,82 @@ public class BookStore {
         jFrame.getContentPane().add(panel);
     }
 
+    public void registrationWindow(int option){
+        JTextField name = new JTextField();
+        JTextField email = new JTextField();
+        JTextField password = new JTextField();
+        JTextField sexo = new JTextField();
+        JTextField cpf = new JTextField();
+        JTextField age = new JTextField();
+        JTextField login = new JTextField();
+        JTextField points = new JTextField();
+
+        if(option == 1){
+            Object[] mensage = {
+                    "Digite o seu nome: ", name,
+                    "Digite um e-mail: ", email,
+                    "Digite uma senha: ", password
+            };
+
+            int optionButton = JOptionPane.showConfirmDialog(null, mensage, "Cadastro de Colaborador", JOptionPane.OK_CANCEL_OPTION);
+
+            if(optionButton == JOptionPane.OK_OPTION){
+                String name1 = name.getText();
+                String email1 = email.getText();
+                String password1 = password.getText();
+                JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+                registerNewEmployee(randomNumber(), name1, email1, password1);
+            }else{
+                JOptionPane.showMessageDialog(null, "Operação cancelada!");
+            }
+        }else{
+            Object[] mensage = {
+                    "Digite o seu nome: ", name,
+                    "Digite um e-mail: ", email,
+                    "Digite uma senha: ", password,
+                    "Digite seu sexo: ", sexo,
+                    "Digite seu CPF: ", cpf,
+                    "Digite sua idade: ", age,
+            };
+
+            int optionButton = JOptionPane.showConfirmDialog(null, mensage, "Cadastro de usuário", JOptionPane.OK_CANCEL_OPTION);
+
+            if(optionButton == JOptionPane.OK_OPTION){
+                String name1 = name.getText();
+                String email1 = email.getText();
+                String password1 = password.getText();
+                String sexo1 = sexo.getText();
+                String cpf1 = cpf.getText();
+                String age1 = age.getText();
+                Integer age2 = Integer.parseInt(age1);
+                JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+                registerNewCustomers(name1, sexo1, email1, password1, cpf1, age2);
+            }else{
+                JOptionPane.showMessageDialog(null, "Operação cancelada!");
+            }
+        }
+
+
+    }
+
+    private int randomNumber(){
+        Random random = new Random();
+        int randomNumber = 100_000 + random.nextInt(900_000);
+        return randomNumber;
+    }
+
+    public void registerNewEmployee(Integer registration, String name, String email, String password){
+        Employee newEmployee = new Employee(registration, name, email, password);
+        employees.add(newEmployee);
+        getEmployees();
+    }
+
+    public void registerNewCustomers(String name, String sexo, String email, String password, String cpf, Integer age){
+        Customers newCostumer = new Customers(name, sexo, email, password, cpf, age);
+        customers.add(newCostumer);
+        getCustomers();
+    }
+
     public Double getBalance(){
         return this.balance;
     }
@@ -77,22 +155,24 @@ public class BookStore {
         this.balance += balance;
     }
 
-    public void addCustomers(Customers newCustomers){
-        customers.add(newCustomers);
-    }
-
     public void allTitles(){
-        Stream<String> stream = books.stream().map(b -> b.getTitle());
+        Stream<String> stream = books.stream().map((b) -> b.getTitle());
         stream.forEach(System.out::println);
     }
 
-    public void getCustomers(){
+    private void getCustomers(){
         for(Customers customer: customers) System.out.println(customer);
+    }
+
+    private void getEmployees(){
+        employees.forEach((employee) ->{
+            System.out.println(employee);
+        });
     }
 
     public Boolean login(String email, String senha){
         for(Customers customer: customers){
-            if(customer.getEmail().equals(email) && customer.getSenha().equals(senha)){
+            if(customer.getEmail().equals(email) && customer.getPassword().equals(senha)){
                 System.out.println("Login realizado com sucesso!");
                 customer.setLogin(true);
                 return true;
@@ -105,16 +185,16 @@ public class BookStore {
     public void getBookByCategory(String option){
         switch (option) {
             case "1":
-               stream("Livros", "1");
+               windows("Livros", "1");
                 break;
             case "2":
-                stream("Livros", "2");
+                windows("Livros", "2");
                 break;
             case "3":
-                stream("Livros", "3");
+                windows("Livros", "3");
                 break;
             case "4":
-                stream("Livros", "4");
+                windows("Livros", "4");
                 break;
         }
     }
@@ -122,7 +202,7 @@ public class BookStore {
     public void getBooks(){
         sortAlphabetically();
         books.forEach((book) -> System.out.println(book.getTitle()));
-        stream("Livros");
+        windows("Livros");
     }
 
     public void buyBook(String title){
